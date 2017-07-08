@@ -240,3 +240,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/DashboardWidget/Scripts/widget-component.ts
+/DashboardWidget/Scripts/widget-component.js
