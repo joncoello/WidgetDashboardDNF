@@ -37,7 +37,7 @@ namespace WidgetDashboardDNF.WebHost.Repositories
 
         private IEnumerable<Assembly> FetchAssemblies()
         {
-            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin");
             var assemblies = Directory
             .GetFiles(path, WIDGET_FILE_PATTERN, SearchOption.TopDirectoryOnly)
             .Select(Assembly.LoadFile)

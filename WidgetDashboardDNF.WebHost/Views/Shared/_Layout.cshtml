@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome.css" />
+    <link rel="stylesheet" href="gridstack.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <!-- top nav bar -->
+        <nav class="navbar navbar-default navbar-static-top">
+            <span class="sidebar-title"><b>Widget</b>Dashboard</span>
+        </nav>
+
+        <!-- left nav bar -->
+        <div class="pull-left sidebar">
+            <!-- sidebar -->
+            <nav id="sidebar-wrapper" role="navigation">
+                <div class="sidebar-content standard-transition">
+
+                    <!-- user -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="/img/user.jpg" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>Jon Smith</p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- nav items -->
+                    <ul>
+
+                        <li>
+                            <a (click)="beforeNav()" [routerLink]="['home']">
+                                <i class="fa fa-dashboard"></i>
+                                <span>Home</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-info pull-right">2</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a (click)="beforeNav()" [routerLink]="['tasks']">
+                                <i class="fa fa-edit"></i>
+                                <span>Tasks</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-warning pull-right">7</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a (click)="beforeNav()" [routerLink]="['categories']">
+                                <i class="fa fa-th"></i>
+                                <span>Categories</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-success pull-right">1</span>
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- right nav bar -->
+        <div id="toolbox" class="pull-right sidebar sidebar-right">
+
+            <p>Toolbox <i>(click to add)</i></p>
+
+            <div class="toolbox-list">
+
+                @RenderSection("toolboxitems", required: false)
+
+            </div>
+
+
+        </div>
+
+        <!-- main area -->
+        <div id="mainArea" class="container-fluid container-main">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+    <script src="gridstack.all.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

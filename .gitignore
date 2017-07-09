@@ -242,3 +242,10 @@ ModelManifest.xml
 .fake/
 /DashboardWidget/Scripts/widget-component.ts
 /DashboardWidget/Scripts/widget-component.js
+/WidgetDashboardDNF.WebHost/fonts
+/WidgetDashboardDNF.WebHost/Scripts/widget-component.js
+/WidgetDashboardDNF.WebHost/Scripts/main.js
+/WidgetDashboardDNF.WebHost/jquery.js
+/WidgetDashboardDNF.WebHost/jquery-ui.min.js
+/WidgetDashboardDNF.WebHost/gridstack.min.css
+/WidgetDashboardDNF.WebHost/gridstack.all.js

@@ -1,0 +1,272 @@
+﻿
+/*#region native */
+
+body {
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+td {
+    padding: 5px;
+}
+
+
+/*#endregion */
+
+/*#region sidebar */
+
+#wrapper {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+    #wrapper.toggled {
+        padding-left: 220px;
+    }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 220px;
+        }
+
+            #wrapper.toggled #sidebar-wrapper .sidebar-content {
+                display: block;
+            }
+
+        #wrapper.toggled #page-content-wrapper {
+            margin-right: -220px;
+            position: absolute;
+        }
+
+#page-content-wrapper {
+    padding: 5px;
+    width: 100%;
+}
+
+#sidebar-wrapper {
+    width: 200px;
+    z-index: 1000;
+    /*background-color: #333;*/
+    float: left;
+    height: 100%;
+}
+
+    #sidebar-wrapper ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #sidebar-wrapper li {
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+        #sidebar-wrapper li a {
+            color: #b8c7ce;
+            padding: 12px 5px 12px 15px;
+            display: block;
+        }
+
+.standard-transition {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.burger {
+    margin-right: 15px;
+    padding: 9px 10px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+
+    .burger .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 1px;
+        background-color: black;
+        margin-top: 3px;
+    }
+
+.sidebar-title {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #fff;
+    font-size: 20px;
+}
+
+.user-panel {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    color: #fff;
+}
+
+    .user-panel > .image > img {
+        width: 100%;
+        max-width: 45px;
+        height: auto;
+    }
+
+    .user-panel > .info {
+        padding: 5px 5px 5px 15px;
+        line-height: 1;
+        position: absolute;
+        left: 55px;
+    }
+
+        .user-panel > .info > p {
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .user-panel > .info > a {
+            color: #fff;
+            text-decoration: none;
+            padding-right: 5px;
+            margin-top: 3px;
+            font-size: 11px;
+        }
+
+/*#endregion */
+
+/*#region table */
+
+.table-loader {
+    text-align: center;
+}
+
+.amount-cell {
+    text-align: right;
+}
+
+.delete-button {
+    float: right;
+}
+
+.table a {
+    text-decoration: none;
+}
+
+/*#endregion */
+
+/*#region forms */
+
+.button-column {
+    width: 100px;
+    text-align: right;
+}
+
+    .button-column a {
+        margin-right: 5px;
+    }
+
+select.form-control {
+    height: auto;
+    padding: 0;
+}
+
+
+/*#endregion */
+
+.navbar-static-top {
+    background-color: #3c8dbc;
+    min-height: 50px;
+    padding: 10px 0 0 10px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-bar {
+    background-color: #3c8dbc;
+    min-height: 50px;
+    padding: 10px 0 0 10px;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+body {
+    padding-top: 50px;
+}
+
+.sidebar {
+    position: absolute;
+    border: 1px solid black;
+    width: 200px;
+    min-height: calc(100% - 50px);
+    background-color: #2c3e50;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.container-main {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.sidebar-right {
+    right: 0;
+    left: auto;
+    width: 200px;
+    padding-left: 10px;
+    color: white;
+    font-size: 0.8em;
+}
+
+.burger {
+    float: left;
+    vertical-align: middle;
+    width: 150px;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.grid-stack-item {
+    border: 1px solid lightgray;
+}
+
+.grid-stack-item-content {
+    margin-top: 10px !important;
+}
+
+    .grid-stack-item-content, .grid-stack-item-content > div {
+        overflow: hidden !important;
+    }
+
+.toolbox-item {
+    border: 1px solid gray;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-top: 5px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.remove-widget{
+    float: right;
+    cursor: pointer;
+}

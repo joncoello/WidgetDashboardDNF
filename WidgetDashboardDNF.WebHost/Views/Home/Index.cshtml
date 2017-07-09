@@ -1,0 +1,79 @@
+﻿@model WidgetDashboardDNF.WebHost.Models.WidgetModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @foreach (var styleReference in Model.Widgets.SelectMany(w => w.StyleReferences).Distinct())
+    {
+        @Html.Raw("    " + styleReference)
+    }
+    <!-- widget scripts -->
+    @foreach (var widget in Model.Widgets)
+    {
+        <style>
+            @Html.Raw(widget.Style)
+        </style>
+    }
+}
+
+<!-- widgets -->
+<div class="grid-stack">
+
+</div>
+
+@section toolboxitems{
+
+    <div>
+        @foreach (var widget in Model.Widgets)
+        {
+            <div class="toolbox-item">
+                <i class="fa fa-cube fa-fw"></i>
+                &nbsp;
+                @widget.Name
+                <div class="widget-template" name="@widget.Name" defaultwidth="@widget.Layout.Widh" defaultheight="@widget.Layout.Height" style="display: none">
+                    @Html.Raw(widget.Template) <!-- should use api call to reduce page size -->
+                </div>
+            </div>
+        }
+
+        <div class="btn-group">
+            <button id="saveLayout" class="btn btn-success btn-sm"><i class="fa fa-save"></i> save</button>
+        </div>
+
+        <div class="btn-group">
+            <button id="loadLayout" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i> load</button>
+        </div>
+
+    </div>
+}
+
+
+@section scripts{
+
+    <!-- grid stack -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.3.0/gridstack.all.js"></script>
+    <script src="~/Scripts/widget-component.js"></script>
+
+    <!-- libraries-->
+    @foreach (var scriptReference in Model.Widgets.SelectMany(w => w.ScriptReferences).Distinct())
+    {
+        @Html.Raw("    " + scriptReference)
+    }
+
+    <!-- widget scripts -->
+    @foreach (var widget in Model.Widgets)
+    {
+        <script>
+            @Html.Raw(widget.Script)
+        </script>
+    }
+
+    <script src="~/Scripts/main.js"></script>
+
+
+}
