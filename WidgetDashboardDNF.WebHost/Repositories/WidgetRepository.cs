@@ -15,7 +15,7 @@ namespace WidgetDashboardDNF.WebHost.Repositories
     public class WidgetRepository
     {
 
-        private const string WIDGET_FILE_PATTERN = "*Widget.dll";
+        private const string WIDGET_FILE_PATTERN = "*Widget*.dll";
 
         public WidgetModel GetWidgets()
         {
