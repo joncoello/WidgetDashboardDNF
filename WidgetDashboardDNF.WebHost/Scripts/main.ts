@@ -13,6 +13,8 @@ $(function () {
     $('.grid-stack').gridstack(options);
 });
 
+var widgetID = 0;
+
 // toolbox item clicked
 $('#toolbox .toolbox-item').click(function () {
     console.log('toolbox item clicked: ' + event.target);
@@ -20,6 +22,8 @@ $('#toolbox .toolbox-item').click(function () {
     var clicked = $(event.target);
     var templateElement = clicked.find('.widget-template').first();
     var template = templateElement.html(); // todo: replace by api call
+    widgetID++;
+    template = template.replace('this', 'widget' + widgetID)
 
     // dashboard grid
     var grid = $('#mainArea .grid-stack').data('gridstack');

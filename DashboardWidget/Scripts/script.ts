@@ -5,9 +5,10 @@
             id: 0,
             name: 'Dashboard Widget',
             setupWidget: (element: Element) => {
-                $(element).find('button').click(function () {
-                    alert('hello widget');
-                });
+
+                $(element).carousel("pause").removeData();
+                $(element).carousel(0);
+
             },
             removeWidget: (element: Element) => {
 

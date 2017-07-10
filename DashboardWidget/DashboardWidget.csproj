@@ -68,6 +68,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chicago.jpg" />
+    <Content Include="la.jpg" />
+    <Content Include="ny.jpg" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />

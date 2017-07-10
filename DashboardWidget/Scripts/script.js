@@ -3,9 +3,8 @@
         id: 0,
         name: 'Dashboard Widget',
         setupWidget: function (element) {
-            $(element).find('button').click(function () {
-                alert('hello widget');
-            });
+            $(element).carousel("pause").removeData();
+            $(element).carousel(0);
         },
         removeWidget: function (element) {
         },

@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Widgets", "Widgets", "{1145
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardWidget", "DashboardWidget\DashboardWidget.csproj", "{B927695A-BC3F-4D48-82D4-9B4BB7C84618}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveImagesAPI", "GoogleDriveImagesAPI\GoogleDriveImagesAPI.csproj", "{F34AB813-05AF-467C-8010-BF51D5CE45A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +31,16 @@ Global
 		{B927695A-BC3F-4D48-82D4-9B4BB7C84618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B927695A-BC3F-4D48-82D4-9B4BB7C84618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B927695A-BC3F-4D48-82D4-9B4BB7C84618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34AB813-05AF-467C-8010-BF51D5CE45A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34AB813-05AF-467C-8010-BF51D5CE45A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34AB813-05AF-467C-8010-BF51D5CE45A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34AB813-05AF-467C-8010-BF51D5CE45A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B927695A-BC3F-4D48-82D4-9B4BB7C84618} = {1145F2CB-336A-4F9D-8277-7BAD7C071AA8}
+		{F34AB813-05AF-467C-8010-BF51D5CE45A0} = {1145F2CB-336A-4F9D-8277-7BAD7C071AA8}
 	EndGlobalSection
 EndGlobal
