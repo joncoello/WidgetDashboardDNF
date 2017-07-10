@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/bootstrap": "^3.3.34",
     "@types/jquery": "^2.0.45",
-    "jquery": "3.2.1",
-    "dashboardwidget": "^1.0.3"
+    "dashboardwidget": "^1.0.3",
+    "jquery": "3.2.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
