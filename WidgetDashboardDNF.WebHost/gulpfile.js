@@ -16,7 +16,7 @@ gulp.task('vendor:20:copy', function () {
         ])
         .pipe(gulp.dest('fonts'));
 
-    return gulp.src([
+    gulp.src([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/jquery-ui-dist/jquery-ui.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
@@ -25,4 +25,7 @@ gulp.task('vendor:20:copy', function () {
         'node_modules/gridstack/dist/gridstack.min.css',
         'node_modules/gridstack/dist/gridstack.all.js'
     ]).pipe(gulp.dest('.'));
+
+    return gulp.src('scripts/**/*.ts')
+        .pipe(ts(tsProject));
 });

@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.0",
     "@types/jquery": "^2.0.45",
     "@types/gridstack": "^0.0.35"
   },
