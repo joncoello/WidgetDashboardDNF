@@ -46,6 +46,23 @@ $('#saveLayout').click(function () {
 
     WidgetManager.Instance.saveLayout();
 
+    var layout = WidgetManager.Instance.loadLayout();
+    var json = JSON.stringify(layout);
+    
+    $.ajax({
+        dataType: "json",
+        contentType: "application/json",
+        method: "POST",
+        url: 'api/layout',
+        data: JSON.stringify(layout),
+        success: function (result) {
+            console.log(result);
+        },
+        error: function () {
+            console.error("error")
+        }
+    })
+
 });
 
 $('#loadLayout').click(function () {
