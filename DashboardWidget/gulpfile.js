@@ -1,18 +1,20 @@
-﻿/// <binding BeforeBuild='copy' />
+﻿/// <binding BeforeBuild='default' />
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
-var tsProject = ts.createProject('tsconfig.json');
+const tsProject = ts.createProject('tsconfig.json');
+const gulpSequence = require('gulp-sequence');
 
 gulp.task('copy', function () {
-    
-    gulp.src(
+    return gulp.src(
       [
           'node_modules/dashboardwidget/widget-component.ts',
       ])
       .pipe(gulp.dest('Scripts'));
-
-    return gulp.src('scripts/**/*.ts')
-        .pipe(ts(tsProject));
-
-
 });
+
+gulp.task('transpile', function () {
+    return tsProject.src()
+        .pipe(tsProject());
+});
+
+gulp.task('default', gulpSequence('copy', 'transpile'));

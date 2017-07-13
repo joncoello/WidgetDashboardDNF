@@ -10,10 +10,11 @@
     "jquery": "3.2.1"
   },
   "devDependencies": {
+    "@types/jquery": "^2.0.45",
     "gulp": "^3.9.1",
+    "gulp-sequence": "^0.4.6",
     "gulp-typescript": "^3.2.0",
-    "typescript": "^2.4.1",
-    "@types/jquery": "^2.0.45"
+    "typescript": "^2.4.1"
   },
   "author": "",
   "license": "ISC"

@@ -1,9 +1,10 @@
-﻿/// <binding BeforeBuild='vendor:20:copy' />
+﻿/// <binding BeforeBuild='default' />
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
-var tsProject = ts.createProject('tsconfig.json');
+const tsProject = ts.createProject('tsconfig.json');
+const gulpSequence = require('gulp-sequence');
 
-gulp.task('vendor:20:copy', function () {
+gulp.task('copy', function () {
     gulp.src(
       [
             'node_modules/dashboardwidget/widget-component.ts',
@@ -18,7 +19,7 @@ gulp.task('vendor:20:copy', function () {
         ])
         .pipe(gulp.dest('fonts'));
 
-    gulp.src([
+    return gulp.src([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/jquery-ui-dist/jquery-ui.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
@@ -27,7 +28,11 @@ gulp.task('vendor:20:copy', function () {
         'node_modules/gridstack/dist/gridstack.min.css',
         'node_modules/gridstack/dist/gridstack.all.js'
     ]).pipe(gulp.dest('.'));
-
-    return gulp.src('scripts/**/*.ts')
-        .pipe(ts(tsProject));
 });
+
+gulp.task('transpile', function () {
+    return tsProject.src()
+        .pipe(tsProject());
+});
+
+gulp.task('default', gulpSequence('copy', 'transpile'));
