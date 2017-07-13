@@ -10,9 +10,13 @@ namespace WidgetDashboardDNF.WebHost.Controllers
 {
     public class LayoutController : ApiController
     {
+        public IHttpActionResult Get()
+        {
 
-        public string Get() {
-            return "hellow world";
+            var layoutRepository = new LayoutRepository();
+            var model = layoutRepository.Load();
+
+            return Ok(model);
         }
 
         public IHttpActionResult Post([FromBody]IEnumerable<Models.LayoutModel> layout)
@@ -23,5 +27,6 @@ namespace WidgetDashboardDNF.WebHost.Controllers
 
             return Ok();
         }
+        
     }
 }
