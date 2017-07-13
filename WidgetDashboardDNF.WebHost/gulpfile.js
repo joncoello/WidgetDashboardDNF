@@ -1,5 +1,7 @@
 ﻿/// <binding BeforeBuild='vendor:20:copy' />
 const gulp = require('gulp');
+const ts = require('gulp-typescript');
+var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('vendor:20:copy', function () {
     gulp.src(
