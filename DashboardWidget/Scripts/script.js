@@ -11,9 +11,11 @@
         },
         loadData: function (element) {
         },
-        saveCustomisation: function (customisation) {
+        saveCustomisation: function (element, customisation) {
+            customisation['mysetting'] = $('.myTextbox', element).val();
         },
-        restoreCustomisation: function (customisation) {
+        restoreCustomisation: function (element, customisation) {
+            $('.myTextbox', element).val(customisation['mysetting']);
         }
     };
     WidgetManager.Instance.registerWidget(widget);

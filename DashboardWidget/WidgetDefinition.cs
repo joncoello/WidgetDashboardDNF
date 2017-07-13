@@ -26,10 +26,9 @@ namespace DashboardWidget
             return new WidgetLayout()
             {
                 Widh = 3,
-                Height = 5
+                Height = 6
             };
         }
-
         public string GetScript()
         {
             return DashboardWidget.Properties.Resources.script;

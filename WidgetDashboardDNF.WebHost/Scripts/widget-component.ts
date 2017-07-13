@@ -29,13 +29,13 @@ class WidgetComponent {
     * Save any customisation data by adding it to the array
     * @param customisation    The array of customisation items
     */
-    public saveCustomisation: (customisation: { [id: string]: any }) => void;
+    public saveCustomisation: (element: Element, customisation: { [id: string]: any }) => void;
 
     /**
     * Restore any customisation data by restrieving it from the array - allow for items not being present
     * @param customisation    The array of customisation items
     */
-    public restoreCustomisation: (customisation: { [id: string]: any }) => void;
+    public restoreCustomisation: (element: Element, customisation: { [id: string]: any }) => void;
 }
 
 /**
@@ -68,8 +68,7 @@ class WidgetManager {
     private _lastInstanceID: number;
     public Instances: Array<WidgetInstance>
 
-    // private constructor to enforce singleton
-    private constructor() {
+    constructor() {
         this.Widgets = new Array<WidgetComponent>();
         this.Instances = new Array<WidgetInstance>();
         this._lastWidgetID = 0;
@@ -140,7 +139,8 @@ class WidgetManager {
         x: string,
         y: string,
         width: string,
-        height: string
+        height: string,
+        customisation: {[id: string]: any}
     }> = [];
 
     public saveLayout() {
@@ -154,12 +154,16 @@ class WidgetManager {
             var widgetContainer = i.element.parentElement;
             var widgetElement = widgetContainer.parentElement;
 
+            var customisation: { [id: string]: any } = {};
+            i.widgetType.saveCustomisation(widgetElement, customisation);
+
             this._layout.push({
                 name: i.widgetType.name,
                 x: widgetElement.getAttribute('data-gs-x').valueOf(),
                 y: widgetElement.getAttribute('data-gs-y').valueOf(),
                 width: widgetElement.getAttribute('data-gs-width').valueOf(),
-                height: widgetElement.getAttribute('data-gs-height').valueOf()
+                height: widgetElement.getAttribute('data-gs-height').valueOf(),
+                customisation: customisation
             });
                                     
         });
@@ -232,15 +236,17 @@ class WidgetManager {
         var eventNameLower = eventName.toLowerCase();
 
         // prevent double subscription ?
-        this._subscribers[eventNameLower].forEach(e => {
-            try {
-                e.callback(message, e.instanceElement);
-            }
-            catch (e) {
-                console.error('error invoking subsciber for event ' + eventName);
-                console.error(e);
-            }
-        });
+        if (this._subscribers[eventNameLower] != null) {
+            this._subscribers[eventNameLower].forEach(e => {
+                try {
+                    e.callback(message, e.instanceElement);
+                }
+                catch (e) {
+                    console.error('error invoking subsciber for event ' + eventName);
+                    console.error(e);
+                }
+            });
+        }
 
     }
 

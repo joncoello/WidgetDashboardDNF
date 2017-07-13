@@ -15,11 +15,11 @@
             loadData: (element: Element) => {
 
             },
-            saveCustomisation: (customisation: { [id: string]: any }): void => {
-
+            saveCustomisation: (element, customisation) => {
+                customisation['mysetting'] = $('.myTextbox', element).val();
             },
-            restoreCustomisation: (customisation: { [id: string]: any }): void => {
-
+            restoreCustomisation: (element, customisation) => {
+                $('.myTextbox', element).val(customisation['mysetting']);
             }
         };
 

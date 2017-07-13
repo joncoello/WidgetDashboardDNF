@@ -69,7 +69,7 @@ $('#loadLayout').click(function () {
 
     $.get('/api/layout', (data) => {
 
-        var widgetLayouts = <Array<{ name: string, x: string, y: string, width: string, height: string }>>data;
+        var widgetLayouts = <Array<{ name: string, x: string, y: string, width: string, height: string, customisation: {[id: string] : any} }>>data;
 
         // dashboard grid
         var grid = $('#mainArea .grid-stack').data('gridstack');
@@ -88,6 +88,7 @@ $('#loadLayout').click(function () {
             var elementToUse = $(widget).find('.widget').first(); // requires widget developer to class their html with .widget
             
             var instance = WidgetManager.Instance.createWidget(elementToUse.get(0), templateElement.attr("name"));
+            instance.widgetType.restoreCustomisation(instance.element, w.customisation);
 
             $(widget).find('.remove-widget').click(function () {
                 grid.removeWidget(widget.get(0));

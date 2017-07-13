@@ -15,7 +15,7 @@ namespace WidgetDashboardDNF.WebHost.Models
         public string Y { get; set; }
         public string Width { get; set; }
         public string Height { get; set; }
-
+        public Dictionary<string, string> Customisation { get; set; }
 
     }
 }
