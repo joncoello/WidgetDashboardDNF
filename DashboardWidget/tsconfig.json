@@ -1,8 +1,14 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es5",
-        "noImplicitAny": false,
-        "sourceMap": false
-    }
+  "compilerOptions": {
+    "module": "system",
+    "target": "es5",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "outFile": "scripts/script.js"
+  },
+  "files": [
+    "scripts/main.ts",
+    "scripts/widget-component.ts",
+    "scripts/config.ts"
+  ]
 }
