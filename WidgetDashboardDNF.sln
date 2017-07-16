@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetDashboardDNF.WebHost", "WidgetDashboardDNF.WebHost\WidgetDashboardDNF.WebHost.csproj", "{25FEF0F5-00B9-450A-850A-4F749BC6CD14}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B927695A-BC3F-4D48-82D4-9B4BB7C84618} = {B927695A-BC3F-4D48-82D4-9B4BB7C84618}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetDashboardDNF.WidgetAPI", "WidgetDashboardDNF.WidgetAPI\WidgetDashboardDNF.WidgetAPI.csproj", "{6C87124E-99EB-4845-83B1-F43AA6DBFE9F}"
 EndProject
