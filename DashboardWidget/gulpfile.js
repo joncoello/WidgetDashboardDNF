@@ -5,6 +5,7 @@ const tsProject = ts.createProject('tsconfig.json');
 const gulpSequence = require('gulp-sequence');
 const argv = require('yargs').argv
 const rename = require('gulp-rename');
+const concat = require('gulp-concat');
 
 gulp.task('copy', function () {
 
@@ -31,4 +32,10 @@ gulp.task('transpile', function () {
         .pipe(tsProject());
 });
 
-gulp.task('default', gulpSequence('copy', 'transpile'));
+gulp.task('concat', function () {
+    return gulp.src(['./scripts/config.js', './scripts/main.js'])
+      .pipe(concat('script.js'))
+      .pipe(gulp.dest('./scripts/'));
+});
+
+gulp.task('default', gulpSequence('copy', 'transpile', 'concat'));

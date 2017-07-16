@@ -249,3 +249,5 @@ ModelManifest.xml
 /WidgetDashboardDNF.WebHost/jquery-ui.min.js
 /WidgetDashboardDNF.WebHost/gridstack.min.css
 /WidgetDashboardDNF.WebHost/gridstack.all.js
+/DashboardWidget/Scripts/config.js
+/DashboardWidget/Scripts/main.js

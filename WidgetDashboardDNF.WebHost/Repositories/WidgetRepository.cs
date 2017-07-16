@@ -67,8 +67,7 @@ namespace WidgetDashboardDNF.WebHost.Repositories
             };
 
             widgetItem.Template = ReplaceThisWithID(widgetItem.Template, widgetItem.ID);
-            widgetItem.Script = ReplaceThisWithID(widgetItem.Script, widgetItem.ID);
-
+            
             return widgetItem;
 
         }
