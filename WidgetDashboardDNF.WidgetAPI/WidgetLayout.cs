@@ -7,7 +7,7 @@ namespace WidgetDashboardDNF.WidgetAPI
 {
     public class WidgetLayout
     {
-        public int Widh { get; set; }
+        public int Width { get; set; }
         public int Height { get; set; }
     }
 }
