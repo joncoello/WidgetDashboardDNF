@@ -32,7 +32,7 @@
                 <i class="fa fa-cube fa-fw"></i>
                 &nbsp;
                 @widget.Name
-                <div class="widget-template" name="@widget.Name" defaultwidth="@widget.Layout.Widh" defaultheight="@widget.Layout.Height" style="display: none">
+                <div class="widget-template" name="@widget.Name" defaultwidth="@widget.Layout.Width" defaultheight="@widget.Layout.Height" style="display: none">
                     @Html.Raw(widget.Template) <!-- should use api call to reduce page size -->
                 </div>
             </div>
