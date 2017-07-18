@@ -28,8 +28,10 @@ gulp.task('copy', function () {
 });
 
 gulp.task('transpile', function () {
-    return tsProject.src()
+    var tsResult = tsProject.src()
         .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest('scripts'));
 });
 
 gulp.task('concat', function () {
