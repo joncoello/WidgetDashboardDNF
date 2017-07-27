@@ -18,6 +18,9 @@ $('#toolbox .toolbox-item').click(function () {
     console.log('toolbox item clicked: ' + event.target);
 
     var clicked = $(event.target);
+
+    var name = clicked.attr('name');
+
     var templateElement = clicked.find('.widget-template').first();
     var template = templateElement.html(); // todo: replace by api call
 

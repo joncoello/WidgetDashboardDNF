@@ -1,0 +1,22 @@
+﻿.message-details {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.user-message {
+    text-align: right;
+}
+
+.bob-message {
+    text-align: left;
+}
+
+.direct-chat-text {
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 10px;
+    background: #d2d6de;
+    border: 1px solid #d2d6de;
+    color: #444;
+    display: inline-block;
+}
