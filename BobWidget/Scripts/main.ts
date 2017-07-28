@@ -5,58 +5,19 @@
     declare var webkitSpeechRecognition: any;
     declare var SpeechSynthesisUtterance: any;
 
-    class Bob {
+    class MessageManager {
 
-        constructor(private element: Element) {
+        constructor(private element: Element, private messageReceiver: IMessageReceiver) {
 
-            var recognition;
-
-            if ("webkitSpeechRecognition" in window) {
-
-                recognition = new webkitSpeechRecognition();
-                recognition.continuous = true;
-                recognition.interimResults = true;
-                recognition.lang = "en-GB";
-
-                recognition.start();
-
-                recognition.onresult = function (event: any) {
-                    var interim_transcript = "";
-                    var final_transcript = "";
-
-                    for (var i = event.resultIndex; i < event.results.length; ++i) {
-                        if (event.results[i].isFinal) {
-                            final_transcript += event.results[i][0].transcript;
-                        } else {
-                            interim_transcript += event.results[i][0].transcript;
-                        }
-                    }
-
-                    if (final_transcript !== "") {
-                        this.createMessage(final_transcript.trim(), element, true, recognition);
-                    }
-
-                };
-
-            };
-
-            $(".message-input", element).keydown(function (event: any) {
-                if (event.keyCode === 13) {
-                    $(".btn-msg-send", element).click();
-                }
-            });
-
-            $(".btn-msg-send", element).click(function () {
-                var message = $(".message-input", element).val();
+            // message received
+            this.messageReceiver.messageReceived = (message: string) => {
                 $(".message-input", element).val("");
-                this.createMessage(message, element, true, recognition);
-            });
-
-            $(".myTextbox", element).focus();
-
+                this.createMessage(message, element, true);
+            };
+            
         }
 
-        private createMessage(message: string, element: Element, fromUser: boolean, recognition: any): void {
+        private createMessage(message: string, element: Element, fromUser: boolean): void {
 
             var classToAttach = fromUser ? "user-message" : "bob-message";
 
@@ -149,27 +110,87 @@
 
     }
 
-    let bob: Bob;
+    interface IMessageReceiver {
+        messageReceived: (message: string) => void;
+    }
 
+    class MessageReceiver implements IMessageReceiver {
+
+        public messageReceived: (message: string) => void;
+
+        constructor(sendButton: JQuery, messageInput: JQuery) {
+
+            var recognition;
+
+            // speech input
+            if ("webkitSpeechRecognition" in window) {
+
+                recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = "en-GB";
+
+                recognition.start();
+
+                recognition.onresult = function (event: any) {
+                    var interim_transcript = "";
+                    var final_transcript = "";
+
+                    for (var i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            final_transcript += event.results[i][0].transcript;
+                        } else {
+                            interim_transcript += event.results[i][0].transcript;
+                        }
+                    }
+
+                    var message = final_transcript.trim();
+
+                    if (message !== "") {
+                        this.messageReceived(message);
+                    }
+
+                };
+
+            };
+
+            // keyboard input
+            sendButton.click(() => {
+                var message = messageInput.val();
+                this.messageReceived(message);
+            });
+
+            // enter key behaviour
+            messageInput.keydown(function (event: any) {
+                if (event.keyCode === 13) {
+                    sendButton.click();
+                }
+            });
+            
+        }
+
+    }
+    
     let widget: WidgetComponent = {
-            id: 0,
-            name: "Bob",
-            setupWidget: (element: Element) => {
-                bob = new Bob(element);
-            },
-            removeWidget: (element: Element) => {
-                // not used
-            },
-            loadData: (element: Element) => {
-                // not used
-            },
-            saveCustomisation: (element: any, customisation: {[id: string]: any}) => {
-                customisation["mysetting"] = $(".myTextbox", element).val();
-            },
-            restoreCustomisation: (element: any, customisation: { [id: string]: any }) => {
-                $(".myTextbox", element).val(customisation["mysetting"]);
-            }
-        };
+        id: 0,
+        name: "Bob",
+        setupWidget: (element: Element) => {
+            let messageReceiver : IMessageReceiver = new MessageReceiver($(".btn-msg-send", element), $(".message-input", element));
+            let messageManager : MessageManager = new MessageManager(element, messageReceiver);
+        },
+        removeWidget: (element: Element) => {
+            // not used
+        },
+        loadData: (element: Element) => {
+            // not used
+        },
+        saveCustomisation: (element: any, customisation: { [id: string]: any }) => {
+            customisation["mysetting"] = $(".myTextbox", element).val();
+        },
+        restoreCustomisation: (element: any, customisation: { [id: string]: any }) => {
+            $(".myTextbox", element).val(customisation["mysetting"]);
+        }
+    };
 
     WidgetManager.Instance.registerWidget(widget);
 

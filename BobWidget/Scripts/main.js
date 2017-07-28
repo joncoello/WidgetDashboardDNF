@@ -1,53 +1,26 @@
 var BobWidget;
 (function (BobWidget) {
     "use strict";
-    var Bob = (function () {
-        function Bob(element) {
+    var MessageManager = (function () {
+        function MessageManager(element, messageReceiver) {
+            var _this = this;
             this.element = element;
-            var recognition;
-            if ("webkitSpeechRecognition" in window) {
-                recognition = new webkitSpeechRecognition();
-                recognition.continuous = true;
-                recognition.interimResults = true;
-                recognition.lang = "en-GB";
-                recognition.start();
-                recognition.onresult = function (event) {
-                    var interim_transcript = "";
-                    var final_transcript = "";
-                    for (var i = event.resultIndex; i < event.results.length; ++i) {
-                        if (event.results[i].isFinal) {
-                            final_transcript += event.results[i][0].transcript;
-                        }
-                        else {
-                            interim_transcript += event.results[i][0].transcript;
-                        }
-                    }
-                    if (final_transcript !== "") {
-                        this.createMessage(final_transcript.trim(), element, true, recognition);
-                    }
-                };
-            }
-            ;
-            $(".message-input", element).keydown(function (event) {
-                if (event.keyCode === 13) {
-                    $(".btn-msg-send", element).click();
-                }
-            });
-            $(".btn-msg-send", element).click(function () {
-                var message = $(".message-input", element).val();
+            this.messageReceiver = messageReceiver;
+            // message received
+            this.messageReceiver.messageReceived = function (message) {
                 $(".message-input", element).val("");
-                this.createMessage(message, element, true, recognition);
-            });
-            $(".myTextbox", element).focus();
+                _this.createMessage(message, element, true);
+            };
         }
-        Bob.prototype.createMessage = function (message, element, fromUser, recognition) {
+        MessageManager.prototype.createMessage = function (message, element, fromUser) {
             var classToAttach = fromUser ? "user-message" : "bob-message";
             $(".message-details", element).append("<div class='" + classToAttach + "'><div class='direct-chat-text' >"
                 + message + "</div></div>");
             this.scrollToBottomOfMessages(element);
             this.sendMessage(element, message);
         };
-        Bob.prototype.sendMessage = function (element, message) {
+        MessageManager.prototype.sendMessage = function (element, message) {
+            var _this = this;
             var replyMessage = "I don\"t understand";
             switch (message) {
                 case "hello": {
@@ -85,7 +58,7 @@ var BobWidget;
             setTimeout(function () {
                 $(".message-details", element).append("<div class='bob-message'><div class='direct-chat-text' >"
                     + replyMessage + "</div></div>");
-                this.scrollToBottomOfMessages(element);
+                _this.scrollToBottomOfMessages(element);
                 if ("speechSynthesis" in window) {
                     var speechSynthesis = window.speechSynthesis;
                     var msg = new SpeechSynthesisUtterance();
@@ -103,18 +76,61 @@ var BobWidget;
                 }
             }, 1000);
         };
-        Bob.prototype.scrollToBottomOfMessages = function (element) {
+        MessageManager.prototype.scrollToBottomOfMessages = function (element) {
             var objDiv = $(".message-details", element).get(0);
             objDiv.scrollTop = objDiv.scrollHeight;
         };
-        return Bob;
+        return MessageManager;
     }());
-    var bob;
+    var MessageReceiver = (function () {
+        function MessageReceiver(sendButton, messageInput) {
+            var _this = this;
+            var recognition;
+            // speech input
+            if ("webkitSpeechRecognition" in window) {
+                recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = "en-GB";
+                recognition.start();
+                recognition.onresult = function (event) {
+                    var interim_transcript = "";
+                    var final_transcript = "";
+                    for (var i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            final_transcript += event.results[i][0].transcript;
+                        }
+                        else {
+                            interim_transcript += event.results[i][0].transcript;
+                        }
+                    }
+                    var message = final_transcript.trim();
+                    if (message !== "") {
+                        _this.messageReceived(message);
+                    }
+                };
+            }
+            ;
+            // keyboard input
+            sendButton.click(function () {
+                var message = messageInput.val();
+                _this.messageReceived(message);
+            });
+            // enter key behaviour
+            messageInput.keydown(function (event) {
+                if (event.keyCode === 13) {
+                    sendButton.click();
+                }
+            });
+        }
+        return MessageReceiver;
+    }());
     var widget = {
         id: 0,
         name: "Bob",
         setupWidget: function (element) {
-            bob = new Bob(element);
+            var messageReceiver = new MessageReceiver($(".btn-msg-send", element), $(".message-input", element));
+            var messageManager = new MessageManager(element, messageReceiver);
         },
         removeWidget: function (element) {
             // not used
