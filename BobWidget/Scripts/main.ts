@@ -74,7 +74,7 @@
 
             }
 
-            setTimeout(function () {
+            setTimeout(() => {
 
                 $(".message-details", element).append("<div class='bob-message'><div class='direct-chat-text' >"
                     + replyMessage + "</div></div>");
@@ -95,7 +95,7 @@
                 }
 
                 if (replyMessage === "bye") {
-                    setTimeout(function () {
+                    setTimeout(() => {
                         window.close();
                     }, 1000);
                 }
@@ -132,7 +132,7 @@
 
                 recognition.start();
 
-                recognition.onresult = function (event: any) {
+                recognition.onresult = (event: any) => {
                     var interim_transcript = "";
                     var final_transcript = "";
 
