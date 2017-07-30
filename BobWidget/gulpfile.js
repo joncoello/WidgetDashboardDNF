@@ -13,18 +13,18 @@ gulp.task('copy', function () {
     if (argv.prod) {
         configFile = 'config-prod';
     };
-    gulp.src(
+    return gulp.src(
       [
           'scripts/' + configFile + '.ts',
       ])
       .pipe(rename('config.ts'))
       .pipe(gulp.dest('scripts'));
 
-    return gulp.src(
-      [
-          'node_modules/dashboardwidget/widget-component.ts',
-      ])
-      .pipe(gulp.dest('Scripts'));
+    //return gulp.src(
+    //  [
+    //      'node_modules/dashboardwidget/widget-component.ts',
+    //  ])
+    //  .pipe(gulp.dest('Scripts'));
 });
 
 gulp.task('transpile', function () {

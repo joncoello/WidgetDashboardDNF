@@ -1,17 +1,19 @@
-﻿interface IWindow extends Window {
-    webkitSpeechRecognition: any;
-    SpeechRecognition: any;
-    SpeechSynthesisUtterance: any;
-}
+﻿import { WidgetModule } from './widget-component'
 
-module BobWidget {
+export module BobWidget {
+
+    interface IWindow extends Window {
+        webkitSpeechRecognition: any;
+        SpeechRecognition: any;
+        SpeechSynthesisUtterance: any;
+    }
 
     "use strict";
-    
+
     const { webkitSpeechRecognition }: IWindow = <IWindow>window;
     const { SpeechSynthesisUtterance }: IWindow = <IWindow>window;
 
-    class MessageManager {
+    export class MessageManager {
 
         constructor(private element: Element, private messageReceiver: IMessageReceiver) {
 
@@ -20,7 +22,7 @@ module BobWidget {
                 $(".message-input", element).val("");
                 this.createMessage(message, element, true);
             };
-            
+
         }
 
         private createMessage(message: string, element: Element, fromUser: boolean): void {
@@ -116,7 +118,7 @@ module BobWidget {
 
     }
 
-    interface IMessageReceiver {
+    export interface IMessageReceiver {
         messageReceived: (message: string) => void;
     }
 
@@ -177,7 +179,7 @@ module BobWidget {
 
     }
     
-    let widget: WidgetComponent = {
+    let widget: WidgetModule.WidgetComponent = {
         id: 0,
         name: "Bob",
         setupWidget: (element: Element) => {
@@ -198,6 +200,6 @@ module BobWidget {
         }
     };
 
-    WidgetManager.Instance.registerWidget(widget);
+    WidgetModule.WidgetManager.Instance.registerWidget(widget);
 
 }

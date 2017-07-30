@@ -1,3 +1,13 @@
+var config = (function () {
+    function config() {
+        this.apiUrl = 'http://dev:1234/api';
+    }
+    return config;
+}());
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var widget_component_1 = require("./widget-component");
 var BobWidget;
 (function (BobWidget) {
     "use strict";
@@ -84,6 +94,7 @@ var BobWidget;
         };
         return MessageManager;
     }());
+    BobWidget.MessageManager = MessageManager;
     var MessageReceiver = (function () {
         function MessageReceiver(sendButton, messageInput) {
             var _this = this;
@@ -147,5 +158,5 @@ var BobWidget;
             $(".myTextbox", element).val(customisation["mysetting"]);
         }
     };
-    WidgetManager.Instance.registerWidget(widget);
-})(BobWidget || (BobWidget = {}));
+    widget_component_1.WidgetModule.WidgetManager.Instance.registerWidget(widget);
+})(BobWidget = exports.BobWidget || (exports.BobWidget = {}));

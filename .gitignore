@@ -251,3 +251,8 @@ ModelManifest.xml
 /WidgetDashboardDNF.WebHost/gridstack.all.js
 /DashboardWidget/Scripts/config.js
 /DashboardWidget/Scripts/main.js
+/BobWidget/Scripts/config.js
+/BobWidget/Scripts/config-prod.js
+/BobWidget/Scripts/config-dev.js
+/BobWidget/Scripts/main.spec.js
+/BobWidget/Scripts/test-bundle.js

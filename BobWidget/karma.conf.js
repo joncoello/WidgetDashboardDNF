@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Sun Jul 30 2017 11:04:25 GMT+0100 (GMT Daylight Time)
+var webpackConfig = require('./webpack.config');
 
 module.exports = function (config) {
     config.set({
@@ -18,7 +19,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-          'scripts/*.spec.js'
+          'scripts/*.spec.ts'
         ],
 
 
@@ -30,8 +31,17 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            'scripts/*.ts': ['webpack']
         },
 
+        mime: {
+            'text/x-typescript': ['ts', 'tsx']
+        },
+
+        webpack: {
+            module: webpackConfig.module,
+            resolve: webpackConfig.resolve
+        },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
