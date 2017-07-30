@@ -67,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="karma.conf.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
@@ -97,6 +98,7 @@
     <TypeScriptCompile Include="Scripts\config-dev.ts" />
     <TypeScriptCompile Include="Scripts\config-prod.ts" />
     <TypeScriptCompile Include="Scripts\config.ts" />
+    <TypeScriptCompile Include="Scripts\main.spec.ts" />
     <TypeScriptCompile Include="Scripts\main.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +140,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties tsconfig_1json__JSONSchema="http://json-schema.org/draft-04/schema" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

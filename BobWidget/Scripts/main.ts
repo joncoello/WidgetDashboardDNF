@@ -1,9 +1,15 @@
-﻿module BobWidget {
+﻿interface IWindow extends Window {
+    webkitSpeechRecognition: any;
+    SpeechRecognition: any;
+    SpeechSynthesisUtterance: any;
+}
+
+module BobWidget {
 
     "use strict";
-
-    declare var webkitSpeechRecognition: any;
-    declare var SpeechSynthesisUtterance: any;
+    
+    const { webkitSpeechRecognition }: IWindow = <IWindow>window;
+    const { SpeechSynthesisUtterance }: IWindow = <IWindow>window;
 
     class MessageManager {
 
@@ -124,7 +130,7 @@
 
             // speech input
             if ("webkitSpeechRecognition" in window) {
-
+                
                 recognition = new webkitSpeechRecognition();
                 recognition.continuous = true;
                 recognition.interimResults = true;

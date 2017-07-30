@@ -1,13 +1,8 @@
-var config = (function () {
-    function config() {
-        this.apiUrl = 'http://dev:1234/api';
-    }
-    return config;
-}());
-
 var BobWidget;
 (function (BobWidget) {
     "use strict";
+    var webkitSpeechRecognition = window.webkitSpeechRecognition;
+    var SpeechSynthesisUtterance = window.SpeechSynthesisUtterance;
     var MessageManager = (function () {
         function MessageManager(element, messageReceiver) {
             var _this = this;

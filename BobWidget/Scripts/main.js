@@ -1,6 +1,8 @@
 var BobWidget;
 (function (BobWidget) {
     "use strict";
+    var webkitSpeechRecognition = window.webkitSpeechRecognition;
+    var SpeechSynthesisUtterance = window.SpeechSynthesisUtterance;
     var MessageManager = (function () {
         function MessageManager(element, messageReceiver) {
             var _this = this;
